@@ -18,6 +18,7 @@ Google has defined only three variable colors red,green and yellow we can overri
 So to add another color i used google chrome inspect to find out the path needed under svg in the other color.
 And then used jquery to add the id to the html tag from javascript and add to that ID using DOM. 
 
+```javascript
 $('g').each(function(index, elem) {
   $(this).attr('id', 'g' + index);
 });
