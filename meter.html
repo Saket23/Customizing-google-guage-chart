@@ -1,0 +1,87 @@
+<html>
+  <head>
+    <script type='text/javascript' src='https://www.google.com/jsapi'></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script>
+function doSomething(a)
+{
+	if(a=="1")
+	{
+	drawChart(34,58,"a");
+	}
+	else if(a=="2")
+	{
+	drawChart(42,56,"b");
+	}
+	else if(a=="3")
+	{
+	drawChart(50,59,"c");
+	}
+	else if(a=="4")
+	{
+	drawChart(57,60,"d");
+	}
+	else if(a=="5")
+	{
+	drawChart(63,58,"e");
+	}
+}
+	</script>
+    <script type='text/javascript'>
+      google.load('visualization', '1.1', {packages:['gauge']});
+      //google.setOnLoadCallback(drawChart(80,55));
+      function drawChart(x,y,z) {
+        var data = google.visualization.arrayToDataTable([
+          ['Label', 'Value'],
+          ['Residual', x],
+          ['Q4 FY 17', y]
+        ]);
+
+        var options = {
+		redColor:"#ff0000",
+		yellowColor: "#e6e600",
+          width: 1000, height: 220,
+		  //blackFrom: 32, blackTo: 48,
+          redFrom: 48, redTo: 64,		  
+          yellowFrom:16, yellowTo:32,
+		  greenFrom:0,greenTo:16,
+		  max: 64,
+		  min: 0
+}
+;
+		
+
+        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+        chart.draw(data, options);
+$('g').each(function(index, elem) {
+  $(this).attr('id', 'g' + index);
+});
+var a=document.getElementById("g0").innerHTML;
+a=a+'<path d="M109.99999999999999,26A84,84,0,0,1,187.6058807309481,77.85459168133247L168.20441054821106,85.89094376099936A63,63,0,0,0,110,47Z" stroke="none" stroke-width="0" fill="orange"></path>';
+var b=document.getElementById("g2").innerHTML;
+b=b+'<path d="M109.99999999999999,26A84,84,0,0,1,187.6058807309481,77.85459168133247L168.20441054821106,85.89094376099936A63,63,0,0,0,110,47Z" stroke="none" stroke-width="0" fill="orange"></path>';
+
+document.getElementById("g0").innerHTML =a;
+document.getElementById("g2").innerHTML =b;
+		document.getElementById("miti").innerHTML = '<div><b>Mitigation Action Status</b></div><table align="left" style="border-collapse:collapse;"><tr><th id="a"></th><th id="b"></th><th id="c"></th><th id="d"></th></tr><tr><th  style="background-color: Green;color:white;border:1px solid Black;height:40px; width:50px"></th><th style="background-color: #e6e600;color:white;border:1px solid Black;height:40px; width:50px"></th><th  style="background-color: Orange;color:white;border:1px solid Black;height:40px; width:50px"></th><th   style="color:white;background-color: Red;border:1px solid Black;height:40px; width:50px"></th></tr></table>';
+		document.getElementById(z).innerHTML='<i class="fa fa-arrow-down" aria-hidden="true"></i>';
+      }
+    </script>
+  </head>
+  <body>
+  <label>Risk Name</Label>
+<select onchange="if (this.selectedIndex) doSomething(value);">
+ <option>Select One</option>
+  <option value="1">Attrition</option>
+  <option value="2">Revenue / Employee</option>
+  <option value="3">Revenue in USD Million</option>
+  <option value="4">Margin</option>
+  <option value="5">No. of $500K accounts</option>
+</select>
+<br>
+<br>
+    <div id='chart_div'></div>
+	<div style='padding-top: 50px;'id='miti'></div>
+  </body>
+</html>
